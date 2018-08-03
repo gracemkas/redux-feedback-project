@@ -7,25 +7,29 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const firstReducer = (state = [], action) =>{
-    // switch(action.type){
-    // case 'ADD_PIZZA':
-    //     return { ...state,
-    //             pizzas: [...state.pizzas, action.payload],
-    //             order_total: state.order_total + action.payload.cost
-    //         };
+const feedbackStorage = (state = 
+                            {feeling: 0, 
+                            understanding: 0, 
+                            support: 0, 
+                            comments: '',
+                            flagged: '',
+                            date: ''}, action) =>{
+    switch(action.type){
+    case 'ADD_FEELING':
+        return { ...state,
+                feeling: [...state.feeling, action.payload],
+            };
     // case 'CLEAR_ORDER':
     //     return state = {};
-    // default:
-    //     return state;
-    // }
-    return state
+    default:
+        return state;
+    }
 }
 
 
 const storeInstance = createStore(
     combineReducers({
-           firstReducer
+           feedbackStorage
 
     }),
     applyMiddleware(logger)
