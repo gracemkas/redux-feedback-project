@@ -3,14 +3,16 @@
 }
 
 .App-header {
-  background-color: #033076;
+  /* background-color: #033076; */
   min-height: 70px;
   padding: 20px;
-  color: white;
+  /* color: white; */
+  outline: 2px;
+  outline-style: solid;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3em;
 }
 
 .App-intro {
