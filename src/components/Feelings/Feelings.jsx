@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import FeelingCSS from './Feelings.css';
+import { connect } from 'react-redux';
 
 class Feelings extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            feeling: 0
+        }
     }
-    // handleClick = () => {
-    //     console.log('clicked');
-    //         this.setState({
-    //             isVisible : !this.state.isVisible
-    //         })
-    // }
+
+    handleChange = (propertyName) => {
+        return (event) => {
+            this.setState({
+                ...this.state,
+                [propertyName]: event.target.value
+            });
+        }
+      }
 
     render() {
         return (
@@ -18,12 +25,12 @@ class Feelings extends Component {
                 <h2>1 of 4 pages</h2>
                 <div className="card">
                     <h2>How are you feeling today?</h2>
-                    <input type="number" placeholder="Enter a number between 1 and 10"/>
-                    <button onClick={this.handleDelete}>Next</button>
+                    <input onChange={this.handleChange('feeling')} className="input" type="number" placeholder="Enter a number between 1 and 10"/>
+                    <button onClick={() => this.props.dispatch({type: 'ADD_FEELING', payload: this.state})}>Next</button>
                 </div>
             </div>
         )
     }
 }
 
-export default Feelings;
+export default connect()(Feelings);

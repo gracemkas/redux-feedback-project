@@ -15,9 +15,10 @@ const feedbackStorage = (state =
                             flagged: '',
                             date: ''}, action) =>{
     switch(action.type){
-    case 'ADD_FEELING':
-        return { ...state,
-                feeling: [...state.feeling, action.payload],
+        // ...state,
+        case 'ADD_FEELING':
+        return { 
+                feeling: action.payload
             };
     // case 'CLEAR_ORDER':
     //     return state = {};
