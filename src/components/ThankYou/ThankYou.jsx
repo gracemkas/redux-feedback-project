@@ -10,7 +10,7 @@ class Comment extends Component {
         handlePost = () => {
             axios.post('/api/feedback', this.props.feedbackStorage)
                 .then(response => {
-                    //   this.props.history.push('/garage')
+                    this.props.history.push('/')
                     console.log('response from router', response);
 
                 }).catch((err) => {
@@ -18,7 +18,7 @@ class Comment extends Component {
 
                 })
         }
-    // }
+
 
     render() {
         return (

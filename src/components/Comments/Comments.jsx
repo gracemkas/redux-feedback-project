@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App/App.css';
+import Header from '../Header/Header';
 import { connect } from 'react-redux';
 
 
@@ -21,15 +22,16 @@ class Comment extends Component {
       }
 
     handleSubmit = () => {
-        // event.preventDefault();
-        this.props.dispatch({type: 'ADD_COMMENT', payload: this.state.comments});
+        this.props.dispatch({type: 'ADD_COMMENT', payload: this.state.comments})
+        this.props.history.push('/thankyou')
     }
 
 
     render() {
         return (
             <div>
-                <h2>4 of 4 pages</h2>
+                <Header />
+                <h2 className="App">4 of 4 pages</h2>
                 <div className="card">
                     <h2>Any comments you want to leave?</h2>
                     <input onChange={this.handleChange('comments')} className="input" type="text" placeholder="Comment"/>

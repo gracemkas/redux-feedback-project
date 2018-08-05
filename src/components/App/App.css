@@ -13,6 +13,7 @@
 
 .App-title {
   font-size: 3em;
+  text-align: center;
 }
 
 .App-intro {
@@ -30,6 +31,7 @@
   width: 800px;
   outline: 2px;
   outline-style: solid;
+  text-align: center;
 }
 
 /* On mouse-over, add a deeper shadow */

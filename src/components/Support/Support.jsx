@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App/App.css';
+import Header from '../Header/Header';
 import { connect } from 'react-redux';
 
 class Support extends Component {
@@ -8,6 +9,11 @@ class Support extends Component {
         this.state = {
             support: 0
         }
+    }
+
+    handleSubmit = () => {
+        this.props.dispatch({type: 'ADD_SUPPORT', payload: this.state.support})
+        this.props.history.push('/comments')
     }
 
     handleChange = (propertyName) => {
@@ -22,11 +28,12 @@ class Support extends Component {
     render() {
         return (
             <div>
-                <h2>3 of 4 pages</h2>
+                <Header />
+                <h2 className="App">3 of 4 pages</h2>
                 <div className="card">
                     <h2>How well are you being supported?</h2>
                     <input onChange={this.handleChange('support')} className="input" type="number" placeholder="Enter a number between 1 and 10"/>
-                    <button onClick={() => this.props.dispatch({type: 'ADD_SUPPORT', payload: this.state.support})}>Next</button>
+                    <button onClick={this.handleSubmit}>Next</button>
                 </div>
             </div>
         )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App/App.css';
+import Header from '../Header/Header';
 import { connect } from 'react-redux';
 
 class Understanding extends Component {
@@ -8,6 +9,11 @@ class Understanding extends Component {
         this.state = {
             understanding: 0
         }
+    }
+
+    handleSubmit = () => {
+        this.props.dispatch({type: 'ADD_UNDERSTANDING', payload: this.state.understanding})
+        this.props.history.push('/support')
     }
 
     handleChange = (propertyName) => {
@@ -22,11 +28,12 @@ class Understanding extends Component {
     render() {
         return (
             <div>
-                <h2>2 of 4 pages</h2>
+                <Header />
+                <h2 className="App">2 of 4 pages</h2>
                 <div className="card">
                     <h2>How well are you understanding the content?</h2>
                     <input onChange={this.handleChange('understanding')} className="input" type="number" placeholder="Enter a number between 1 and 10"/>
-                    <button onClick={() => this.props.dispatch({type: 'ADD_UNDERSTANDING', payload: this.state.understanding})}>Next</button>
+                    <button onClick={this.handleSubmit}>Next</button>
                 </div>
             </div>
         )
