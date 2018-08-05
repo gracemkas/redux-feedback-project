@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FeelingCSS from './Feelings.css';
+import '../App/App.css';
 import { connect } from 'react-redux';
 
 class Feelings extends Component {
@@ -26,7 +26,7 @@ class Feelings extends Component {
                 <div className="card">
                     <h2>How are you feeling today?</h2>
                     <input onChange={this.handleChange('feeling')} className="input" type="number" placeholder="Enter a number between 1 and 10"/>
-                    <button onClick={() => this.props.dispatch({type: 'ADD_FEELING', payload: this.state})}>Next</button>
+                    <button onClick={() => this.props.dispatch({type: 'ADD_FEELING', payload: this.state.feeling})}>Next</button>
                 </div>
             </div>
         )
