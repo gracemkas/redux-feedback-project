@@ -19,17 +19,28 @@ router.post('/', (req, res) => {
       })
   });
   
-//   router.get('/', (req, res) => {
-//     console.log('got to trainer router GET');
-//     pool.query(`SELECT "trainers".name_trainer, "trainers".id, count("pokemon".trainer_id) FROM "trainers"
-//       LEFT OUTER JOIN "pokemon" ON "trainers".id = "pokemon".trainer_id
-//       GROUP BY "trainers".name_trainer, "trainers".id;`)
-//       .then((results) => {
-//         console.log('Here are the router get results', results);
-//         res.send(results.rows);
-//       }).catch((error) => {
-//         console.log('error from router get', error);
-//       })
-//   });
+  router.get('/', (req, res) => {
+    console.log('got to router GET');
+    pool.query(`SELECT * FROM "feedback";`)
+      .then((results) => {
+        console.log('Here are the router get results', results);
+        res.send(results.rows);
+      }).catch((error) => {
+        console.log('error from router get', error);
+      })
+  });
+
+  router.delete('/:id', (req, res) => {
+    console.log('Got to DELETE');
+    console.log(req.params.id);
+    pool.query(`DELETE FROM "feedback" WHERE "id" = $1;`, [req.params.id])
+      .then((results) => {
+        console.log('GOT TO DELETE', results);
+        res.sendStatus(200);
+      }).catch((error) => {
+        console.log('Error from delete', error);
+  
+      })
+  });
 
   module.exports = router;
