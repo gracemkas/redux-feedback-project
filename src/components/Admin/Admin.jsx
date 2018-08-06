@@ -8,7 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Header from '../Header/Header';
+import '../App/App.css';
 
 
 const styles = theme => ({
@@ -53,11 +53,11 @@ class AdminTable extends Component {
 
     handleDelete = (id) => {
         axios.delete(`/api/feedback/${id}`)
-        .then(response => {
-            this.getFeedback();
-        }).catch((error) => {
-            console.log('error making delete request', error);
-        });
+            .then(response => {
+                this.getFeedback();
+            }).catch((error) => {
+                console.log('error making delete request', error);
+            });
     }
 
     componentDidMount() {
@@ -67,41 +67,44 @@ class AdminTable extends Component {
     render() {
 
         let feedbackMapArray = this.state.feedbackList.map((item, index) => {
-            return (<AdminItem 
-                        key={index} 
-                        item={item} 
-                        handleDelete={this.handleDelete}/>)
+            return (<AdminItem
+                key={index}
+                item={item}
+                handleDelete={this.handleDelete} />)
         });
 
         return (
             <div>
-            <Header/>
-            <Paper className={this.props.classes.root}>
-                <Table className={this.props.classes.table}>
-                    <TableHead className={this.props.classes.heading}>
-                        <TableRow>
-                            <TableCell className={this.props.classes.headingCell}>
-                                Feeling
+                <header className="App-header">
+                    <h1 className="App-title">Feedback Results!</h1>
+                    <br />
+                </header>
+                <Paper className={this.props.classes.root}>
+                    <Table className={this.props.classes.table}>
+                        <TableHead className={this.props.classes.heading}>
+                            <TableRow>
+                                <TableCell className={this.props.classes.headingCell}>
+                                    Feeling
                             </TableCell>
-                            <TableCell className={this.props.classes.headingCell}>
-                                Comprehension
+                                <TableCell className={this.props.classes.headingCell}>
+                                    Comprehension
                             </TableCell>
-                            <TableCell className={this.props.classes.headingCell}>
-                                Support
+                                <TableCell className={this.props.classes.headingCell}>
+                                    Support
                             </TableCell>
-                            <TableCell className={this.props.classes.headingCell}>
-                                Comments
+                                <TableCell className={this.props.classes.headingCell}>
+                                    Comments
                             </TableCell>
-                            <TableCell className={this.props.classes.headingCell}>
-                                Delete
+                                <TableCell className={this.props.classes.headingCell}>
+                                    Delete
                             </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {feedbackMapArray}
-                    </TableBody>
-                </Table>
-            </Paper>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {feedbackMapArray}
+                        </TableBody>
+                    </Table>
+                </Paper>
             </div>
         )
     }
