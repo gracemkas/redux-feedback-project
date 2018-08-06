@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import '../App/App.css';
 import Header from '../Header/Header';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 
 class Comment extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            feeling: this.props.feedbackStorage.feeling,
+            understanding: this.props.feedbackStorage.understanding,
+            support: this.props.feedbackStorage.support,
             comments: ''
         }
     }
@@ -22,8 +26,16 @@ class Comment extends Component {
       }
 
     handleSubmit = () => {
-        this.props.dispatch({type: 'ADD_COMMENT', payload: this.state.comments})
-        this.props.history.push('/thankyou')
+        // this.props.dispatch({type: 'ADD_COMMENT', payload: this.state.comments})
+        axios.post('/api/feedback', this.state)
+        .then(response => {
+            this.props.history.push('/thankyou')
+            console.log('response from router', response);
+
+        }).catch((err) => {
+            console.log(err);
+
+        })
     }
 
 
@@ -42,6 +54,9 @@ class Comment extends Component {
     }
 }
 
+const mapStateToProps = (reduxState) => {
+    return { feedbackStorage: reduxState.feedbackStorage }
+}
 
 
-export default connect()(Comment);
+export default connect(mapStateToProps)(Comment);

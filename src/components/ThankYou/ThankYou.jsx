@@ -2,24 +2,15 @@ import React, { Component } from 'react';
 import '../App/App.css';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
-import axios from 'axios';
+
 
 
 class Comment extends Component {
 
-    // componentDidMount() {
     handlePost = () => {
-        axios.post('/api/feedback', this.props.feedbackStorage)
-            .then(response => {
                 this.props.history.push('/')
-                console.log('response from router', response);
-
-            }).catch((err) => {
-                console.log(err);
-
-            })
     }
-    // }
+
 
     render() {
         return (
